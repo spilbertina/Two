@@ -2,35 +2,33 @@ const first = document.querySelector('.first');
 const second = document.querySelector('.second');
 const equals = document.querySelector('.equals');
 const result = document.querySelector('.result');
-const cleare = document.querySelectorAll('.cleare');
+const cleareList = document.querySelectorAll('.cleare');
+const mul = document.querySelector('.mul');
 
-const firstMult = document.querySelector('.first-mult');
-const secondMult = document.querySelector('.second-mult');
-const equalsMult = document.querySelector('.equals-mult'); 
-const resultMult = document.querySelector('.result-mult'); 
-// const cleareMult = document.querySelector('.cleare-mult');
-
-function del() {
-    first.value = '';
-    second.value = '';
-
-    result.textContent = '';
+function cleareText(input1, input2, div) {
+    input1.value = '';
+    input2.value = '';
+    div.textContent = '';
 }
 
-function delMult() {
-    firstMult.value = '';
-    secondMult.value = '';
 
-    resultMult.textContent = '';
-}
+equals.addEventListener('click', () =>
+    result.textContent = (+first.value) + (+second.value)
+);
 
-equals.addEventListener('click', 
-() => result.textContent = (+first.value) + (+second.value));
-equalsMult.addEventListener('click', 
-() => resultMult.textContent = (+firstMult.value) * (+secondMult.value));
-// cleare.addEventListener('click', del);
-// cleareMult.addEventListener('click', delMult);
+mul.addEventListener('click', () =>
+    result.textContent = (+first.value) * (+second.value)
+);
 
-cleare.forEach(function(item) {
-    item.addEventListener('click', del)
+
+cleareList.forEach((cleareButton)=>{
+    cleareButton.addEventListener('click', (event) => {
+        const wrapper = event.target.parentElement;
+        const firstInput = wrapper.querySelector('.first');
+        const secondInput = wrapper.querySelector('.second');
+        const resultDiv = wrapper.querySelector('.result');
+    
+        cleareText(firstInput, secondInput, resultDiv);
+        console.log(firstInput, secondInput, resultDiv);
+    });
 });
