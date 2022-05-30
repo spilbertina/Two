@@ -2,31 +2,19 @@ const first = document.querySelector('.first');
 const second = document.querySelector('.second');
 const equals = document.querySelector('.equals');
 const result = document.querySelector('.result');
-const cleare = document.querySelector('.cleare');
+const cleare = document.querySelectorAll('.cleare');
 
 const firstMult = document.querySelector('.first-mult');
 const secondMult = document.querySelector('.second-mult');
 const equalsMult = document.querySelector('.equals-mult'); 
 const resultMult = document.querySelector('.result-mult'); 
-const cleareMult = document.querySelector('.cleare-mult');
-
-function sum() {
-    let firstInput = +first.value;
-    let secondInput = +second.value;
-
-    result.textContent = firstInput + secondInput;
-}
+// const cleareMult = document.querySelector('.cleare-mult');
 
 function del() {
     first.value = '';
     second.value = '';
 
     result.textContent = '';
-}
-
-function multiplication() {
-    
-       resultMult.textContent = +firstMult.value * +secondMult.value;
 }
 
 function delMult() {
@@ -36,7 +24,13 @@ function delMult() {
     resultMult.textContent = '';
 }
 
-equals.addEventListener('click', sum);
-cleare.addEventListener('click', del);
-equalsMult.addEventListener('click', multiplication);
-cleareMult.addEventListener('click', delMult);
+equals.addEventListener('click', 
+() => result.textContent = (+first.value) + (+second.value));
+equalsMult.addEventListener('click', 
+() => resultMult.textContent = (+firstMult.value) * (+secondMult.value));
+// cleare.addEventListener('click', del);
+// cleareMult.addEventListener('click', delMult);
+
+cleare.forEach(function(item) {
+    item.addEventListener('click', del)
+});
